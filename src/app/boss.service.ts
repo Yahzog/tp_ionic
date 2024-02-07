@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection} from "@angular/fire/compat/firestore";
-import {Boss} from "./models/boss.model";
+import {Bosses} from "./models/boss.model";
+import {map, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BossService {
-  private dbPath = '/boss';
-  bossRef: AngularFirestoreCollection<Boss>;
+  private dbPath = '/bosses';
+  bossRef: AngularFirestoreCollection<Bosses>;
 
   constructor(
     private db: AngularFirestore
@@ -15,23 +16,40 @@ export class BossService {
     this.bossRef = db.collection(this.dbPath);
   }
 
-  getAll(): AngularFirestoreCollection<Boss> {
-    return this.bossRef;
+  getAll(): any {
+    return this.bossRef.snapshotChanges().pipe(
+      map((changes: any) => {
+        return changes.map((doc:any) => {
+          return ({id: doc.payload.doc.id, ...doc.payload.doc.data()})
+        })
+      })
+    );
   }
 
-  get(id: string): AngularFirestoreCollection<Boss> {
-    return this.bossRef;
+  get(id: any): any {
+    return  new Observable(obs => {
+      this.bossRef.doc(id).get().subscribe(res => {
+        obs.next({id: res.id, ...res.data()});
+      });
+    });
   }
 
-  update(id: string, data: any): Promise<void> {
-    return this.bossRef.doc(id).update(data);
+  update(boss:Bosses) {
+    return new Observable(obs => {
+      this.bossRef.doc(boss.id).update(boss);
+      obs.next();
+    });
   }
 
   delete(id: string): Promise<void> {
     return this.bossRef.doc(id).delete();
   }
 
-  saveNewBoss(boss: Boss): Promise<any> {
-    return this.bossRef.add({...boss});
+  saveNewBoss(boss: Bosses) : any {
+    return new Observable(obs => {
+      this.bossRef.add({...boss}).then(() => {
+        obs.next();
+      });
+    });
   }
 }

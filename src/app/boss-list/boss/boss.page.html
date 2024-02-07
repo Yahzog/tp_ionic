@@ -1,25 +1,79 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="dark">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/boss"></ion-back-button>
     </ion-buttons>
-    <ion-title>boss</ion-title>
+    <ion-title *ngIf="boss">{{ boss.name }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">boss</ion-title>
+      <ion-title size="large">Boss</ion-title>
     </ion-toolbar>
   </ion-header>
 
+  <ion-content>
+    <ion-button (click)="setModif()" expand="block">Rendre Modifiable</ion-button>
 
-  <ion-button (click)="setModif()">Modifier</ion-button>
-  <div *ngIf="!modif">
-    j'affiche
-  </div>
-  <div *ngIf="modif">
-    Je peux modif
-  </div>
+    <div class="boss-details" *ngIf="!modif && boss">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <ion-button (click)="onDelete(boss.id)" fill="clear" color="danger" class="delete-button">
+              <ion-icon name="trash"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="ion-text-center">
+            <img [src]="boss.picture" [alt]="boss.name" class="boss-image">
+          </ion-col>
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position="floating">Nom</ion-label>
+              <ion-input type="text" [(ngModel)]="boss.name" disabled></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Jeu d'origine</ion-label>
+              <ion-input type="text" [(ngModel)]="boss.jeu" disabled></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">HP</ion-label>
+              <ion-input type="text" [(ngModel)]="boss.hp" disabled></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Ame</ion-label>
+              <ion-input type="text" [(ngModel)]="boss.ame" disabled></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div *ngIf="modif">
+      <ion-item>
+        <ion-label position="floating">Image</ion-label>
+        <ion-input type="text" [(ngModel)]="boss.picture"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Nom</ion-label>
+        <ion-input type="text" [(ngModel)]="boss.name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Jeu d'origine</ion-label>
+        <ion-input type="text" [(ngModel)]="boss.jeu"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">HP</ion-label>
+        <ion-input type="text" [(ngModel)]="boss.hp"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Ame</ion-label>
+        <ion-input type="text" [(ngModel)]="boss.ame"></ion-input>
+      </ion-item>
+      <ion-button (click)="onModif()" expand="block">Modifier</ion-button>
+    </div>
+  </ion-content>
 </ion-content>
