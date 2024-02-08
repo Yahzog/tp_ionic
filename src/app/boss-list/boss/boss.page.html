@@ -40,12 +40,16 @@
               <ion-input type="text" [(ngModel)]="boss.jeu" disabled></ion-input>
             </ion-item>
             <ion-item>
+              <ion-label position="floating">Description</ion-label>
+              <ion-input type="text" [(ngModel)]="boss.description" disabled></ion-input>
+            </ion-item>
+            <ion-item>
               <ion-label position="floating">HP</ion-label>
-              <ion-input type="text" [(ngModel)]="boss.hp" disabled></ion-input>
+              <ion-input type="number" [(ngModel)]="boss.hp" disabled></ion-input>
             </ion-item>
             <ion-item>
               <ion-label position="floating">Ame</ion-label>
-              <ion-input type="text" [(ngModel)]="boss.ame" disabled></ion-input>
+              <ion-input type="number" [(ngModel)]="boss.ame" disabled></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -66,12 +70,16 @@
         <ion-input type="text" [(ngModel)]="boss.jeu"></ion-input>
       </ion-item>
       <ion-item>
+        <ion-label position="floating">Description</ion-label>
+        <ion-input type="text" [(ngModel)]="boss.description"></ion-input>
+      </ion-item>
+      <ion-item>
         <ion-label position="floating">HP</ion-label>
-        <ion-input type="text" [(ngModel)]="boss.hp"></ion-input>
+        <ion-input type="number" [(ngModel)]="boss.hp"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Ame</ion-label>
-        <ion-input type="text" [(ngModel)]="boss.ame"></ion-input>
+        <ion-input type="number" [(ngModel)]="boss.ame"></ion-input>
       </ion-item>
       <ion-button (click)="onModif()" expand="block">Modifier</ion-button>
     </div>

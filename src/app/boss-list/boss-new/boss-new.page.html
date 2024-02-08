@@ -22,12 +22,16 @@
       <ion-input type="text" [(ngModel)]="boss.jeu"></ion-input>
     </ion-item>
     <ion-item>
+      <ion-label position="floating">Description</ion-label>
+      <ion-input type="text" [(ngModel)]="boss.description"></ion-input>
+    </ion-item>
+    <ion-item>
       <ion-label position="floating">HP</ion-label>
-      <ion-input type="text" [(ngModel)]="boss.hp"></ion-input>
+      <ion-input type="number" [(ngModel)]="boss.hp"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Ame</ion-label>
-      <ion-input type="text" [(ngModel)]="boss.ame"></ion-input>
+      <ion-input type="number" [(ngModel)]="boss.ame"></ion-input>
     </ion-item>
   </ion-list>
 
