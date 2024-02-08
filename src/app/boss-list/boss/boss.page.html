@@ -41,7 +41,7 @@
             </ion-item>
             <ion-item>
               <ion-label position="floating">Description</ion-label>
-              <ion-input type="text" [(ngModel)]="boss.description" disabled></ion-input>
+              <ion-textarea [(ngModel)]="boss.description" [autoGrow]="true" disabled></ion-textarea>
             </ion-item>
             <ion-item>
               <ion-label position="floating">HP</ion-label>
@@ -71,7 +71,7 @@
       </ion-item>
       <ion-item>
         <ion-label position="floating">Description</ion-label>
-        <ion-input type="text" [(ngModel)]="boss.description"></ion-input>
+        <ion-textarea [(ngModel)]="boss.description" [autoGrow]="true"></ion-textarea>
       </ion-item>
       <ion-item>
         <ion-label position="floating">HP</ion-label>
